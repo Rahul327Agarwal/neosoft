@@ -1,0 +1,59 @@
+#header2
+{
+    background: aquamarine;
+    height:120px;
+    border:1px solid red;
+    text-align: center;
+}
+
+
+body
+{
+    margin: 0%;
+    padding: 0%;
+    background-color: aliceblue;
+}
+
+h1
+{
+    font-size:xx-large;
+    font-weight: bolder;
+    color: brown;
+}
+
+#total
+{
+    background-color:wheat;
+    width:30%; 
+    height:200px; 
+    border: 1px solid red;
+    text-align: center;
+  
+}
+
+#pending
+{
+    background-color:rgb(238, 231, 172);
+    width:30%; 
+    height:200px; 
+    border: 1px solid red;
+    text-align: center;
+   
+}
+
+#completed
+{
+    background-color: aquamarine;
+    width:30%; 
+    height:200px; 
+    border: 1px solid red;
+    text-align: center;
+   
+}
+
+#tasks
+{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}

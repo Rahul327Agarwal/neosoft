@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "../CSS/taskmanager.css";
+import { useDispatch } from 'react-redux';
+import {managetask} from '../Redux/action';
+import { Link } from "react-router-dom";
 
 var curr_setstage = "";
 var curr_stage = "";
@@ -12,10 +15,11 @@ function TaskManagement() {
   const [stage4, setStage4] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
 
+  const dispatch=useDispatch();
+
   // handling forward click event.
   const moveforward = (item) => {
     const stage = item.stage_num;
-    console.log(stage);
 
     if (stage === 1) {
       let temp = stage1.filter((data) => {
@@ -42,6 +46,7 @@ function TaskManagement() {
       item.stage_num = 4;
       setStage4([...stage4, item]);
     }
+    dispatch(managetask(stage));
   };
 
   // handling backward click event.
@@ -73,6 +78,7 @@ function TaskManagement() {
       item.stage_num = 3;
       setStage3([...stage3, item]);
     }
+    dispatch(managetask(stage))
   };
 
   // handling edit event.
@@ -131,16 +137,18 @@ function TaskManagement() {
     // when it is new task
     else setStage1([...stage1, data]);
     document.getElementById("task").value = "";
+    dispatch(managetask(1))
   };
   return (
     <>
-      <div>
+    <div id="dash"><Link to="/dashboard"><button id="btn1">Click me to move dashboard</button></Link></div>
+      <div id="divtask1">
         <h3>Task Manager</h3>
 
         <p>Please enter your task here</p>
       </div>
 
-      <div>
+      <div id="divtask2">
         <input type="text" id="task" placeholder="Task Name" />
 
         <select name="priority" id="priority">
@@ -153,14 +161,16 @@ function TaskManagement() {
         <button id="submit" onClick={handleclick}>
           Create Task
         </button>
+        
       </div>
 
       <div id="stage">
         <div id="stage1">
           <h1>Backlog</h1>
-          {stage1.map((item) => {
+          {stage1.map((item,i) => {
             return (
-              <div>
+              <div key={i}>
+                
                 <li>{item.name}</li>
                 <button onClick={() => moveforward(item)}>Forward</button>
                 <button onClick={() => handleedit(stage1, setStage1, item)}>
@@ -169,15 +179,17 @@ function TaskManagement() {
                 <button onClick={() => handledelete(stage1, setStage1, item)}>
                   Delete
                 </button>
+                
               </div>
             );
           })}
         </div>
         <div id="stage2">
           <h1>To Do</h1>
-          {stage2.map((item) => {
+          {stage2.map((item,i) => {
             return (
-              <div>
+              <div key={i}>
+            
                 <li>{item.name}</li>
                 <button onClick={() => movebackward(item)}>Back</button>
                 <button onClick={() => moveforward(item)}>Forward</button>
@@ -193,9 +205,10 @@ function TaskManagement() {
         </div>
         <div id="stage3">
           <h1>Ongoing</h1>
-          {stage3.map((item) => {
+          {stage3.map((item,i) => {
             return (
-              <div>
+              <div key={i}>
+                
                 <li>{item.name}</li>
                 <button onClick={() => movebackward(item)}>Back</button>
                 <button onClick={() => moveforward(item)}>Forward</button>
@@ -211,9 +224,10 @@ function TaskManagement() {
         </div>
         <div id="stage4">
           <h1>Done</h1>
-          {stage4.map((item) => {
+          {stage4.map((item,i) => {
             return (
-              <div>
+              <div key={i}>
+                
                 <li>{item.name}</li>
                 <button onClick={() => movebackward(item)}>Back</button>
                 <button onClick={() => handleedit(stage4, setStage4, item)}>
