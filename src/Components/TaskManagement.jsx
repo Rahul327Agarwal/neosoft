@@ -10,7 +10,7 @@ var curr_num = 0;
 var curr_key = "";
 var curr_status = "";
 function TaskManagement() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [stage1, setStage1] = useState([]);
   const [stage2, setStage2] = useState([]);
   const [stage3, setStage3] = useState([]);
@@ -51,7 +51,6 @@ function TaskManagement() {
       item.status = "done";
       setStage4([...stage4, item]);
     }
-    
   };
 
   // handling backward click event.
@@ -86,7 +85,6 @@ function TaskManagement() {
       item.status = "ongoing";
       setStage3([...stage3, item]);
     }
-    
   };
 
   // handling edit event.
@@ -150,17 +148,14 @@ function TaskManagement() {
     else setStage1([...stage1, data]);
     document.getElementById("task").value = "";
     document.getElementById("date").value = "";
-    
   };
 
   // function to save data to the database
   const savedata = () => {
-
     //updating the store with the count of pending and completed tasks.
-    const pending_count=stage1.length+stage2.length+stage3.length;
-    const completed_count=stage4.length;
-    dispatch(managetask({pending_count,completed_count}));
-
+    const pending_count = stage1.length + stage2.length + stage3.length;
+    const completed_count = stage4.length;
+    dispatch(managetask({ pending_count, completed_count }));
 
     // Adding all the tasks in the one array to move that array to the database.
     var alltask = [];
@@ -175,21 +170,17 @@ function TaskManagement() {
       body: JSON.stringify(alltask),
     };
     fetch("http://localhost:1234/task", requestOptions)
-      .then((response) => {
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        alert("your data has been loaded to the database");
         navigate("/dashboard");
       })
       .catch((error) => {
         alert(error.message);
       });
-      
   };
 
   const getdata = () => {
-    const email=sessionStorage.getItem("user");
+    const email = sessionStorage.getItem("user");
     fetch(`http://localhost:1234/task?user=${email}`)
       .then((response) => {
         return response.json();

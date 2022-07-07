@@ -37,7 +37,7 @@ function SignIn() {
       })
       .catch((error) => {
         alert(
-          "You are not a registered user. PLease check your details or signup first"
+          "You are not a registered user. PLease check your email/password or signup first"
         );
       });
   };

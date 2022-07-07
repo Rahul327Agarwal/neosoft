@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const User = require("../Models/userModel");
+const bcrypt = require("bcrypt");
 
 app.get("/", async (req, res) => {
   try {
@@ -17,6 +18,13 @@ app.post("/", async (req, res) => {
     if (exist)
       res.status(400).send({ msg: "User already exist. please signin" });
     else {
+      // encrypting the user password
+      user_pass = req.body.password;
+      const saltRounds = 10;
+      const hash = bcrypt.hashSync(user_pass, saltRounds);
+      req.body.password = hash;
+
+      // storing into the database
       const user = await User.create(req.body);
       res.send(user);
     }
