@@ -33,23 +33,24 @@ function Register() {
       return;
     }
 
-    const user={name,contact,username,password,email}
+    const user = { name, contact, username, password, email };
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     };
-    fetch("http://localhost:1234/register",requestOptions)
-      .then((response) => 
-      { console.log(response.status);
-        if(response.status===400)
-        throw new Error("User already exist. Please sign in");
-        else
-        response.json()
-      
+    fetch("http://localhost:1234/register", requestOptions)
+      .then((response) => {
+        console.log(response.status);
+        if (response.status === 400)
+          throw new Error("User already exist. Please sign in");
+        else response.json();
       })
-      .then((data) => {alert("you have successfully registered with our system");navigate('/signin')})
-      .catch((error)=>alert(error))
+      .then((data) => {
+        alert("you have successfully registered with our system");
+        navigate("/signin");
+      })
+      .catch((error) => alert(error));
   };
 
   return (
@@ -64,22 +65,16 @@ function Register() {
         <div className="sep"></div>
 
         <div className="inputs">
-          <input type="text" id="name" placeholder="Name"  />
+          <input type="text" id="name" placeholder="Name" />
           <input
             type="text"
             maxLength="10"
             id="contact"
             placeholder="Contact number"
-            
           />
-          <input type="text" id="username" placeholder="UserName"  />
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            
-          />
-          <input type="email" id="email" placeholder="e-mail"  />
+          <input type="text" id="username" placeholder="UserName" />
+          <input type="password" id="password" placeholder="Password" />
+          <input type="email" id="email" placeholder="e-mail" />
           {/* <input type="image" alt="profile image" placeholder="Profile Image" /> */}
 
           <div className="checkboxy">
@@ -88,7 +83,6 @@ function Register() {
           </div>
 
           <button type="button" onClick={checkdetails}>
-            {" "}
             Sign Up
           </button>
           <Link to="/signin">

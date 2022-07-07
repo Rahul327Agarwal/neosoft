@@ -22,7 +22,9 @@ app.post("/", async (req, res) => {
     const deleted = await Task.deleteMany({ user: data[0].user });
 
     // inserting the data if data is avilable
-    if (data[1] != undefined) Task.insertMany(data);
+    if ("priority" in data[0]) {
+      const output = Task.insertMany(data);
+    }
 
     res.send({ msg: "success" });
   } catch (error) {

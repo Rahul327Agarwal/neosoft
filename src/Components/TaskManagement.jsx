@@ -166,62 +166,56 @@ function TaskManagement() {
 
     // if user has deleted all the tasks from frontend; sending user details to the backend to delete the data as there is no information
     // available for the user in alltask array after deleting everytinh from frontend.
-    if(alltask.length===0)
-    {
-      const temp_data={user:sessionStorage.getItem("user")};
+    if (alltask.length === 0) {
+      const temp_data = { user: sessionStorage.getItem("user") };
       alltask.push(temp_data);
     }
-
+    console.log(alltask);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(alltask),
     };
-    
-      fetch("http://localhost:1234/task", requestOptions)
-        .then((response) => response.json())
-        .then((data) => {
-          
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    
+
+    fetch("http://localhost:1234/task", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {})
+      .catch((error) => {
+        alert(error.message);
+      });
+
     navigate("/dashboard");
-  
   };
 
   const getdata = () => {
     const email = sessionStorage.getItem("user");
-    if(!email)
-    {
+    if (!email) {
       navigate("/");
-    }
-    else{
-    fetch(`http://localhost:1234/task?user=${email}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        var arr1 = [];
-        var arr2 = [];
-        var arr3 = [];
-        var arr4 = [];
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].status === "backlog") arr1.push(data[i]);
-          if (data[i].status === "todo") arr2.push(data[i]);
-          if (data[i].status === "ongoing") arr3.push(data[i]);
-          if (data[i].status === "done") arr4.push(data[i]);
-        }
+    } else {
+      fetch(`http://localhost:1234/task?user=${email}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          var arr1 = [];
+          var arr2 = [];
+          var arr3 = [];
+          var arr4 = [];
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].status === "backlog") arr1.push(data[i]);
+            if (data[i].status === "todo") arr2.push(data[i]);
+            if (data[i].status === "ongoing") arr3.push(data[i]);
+            if (data[i].status === "done") arr4.push(data[i]);
+          }
 
-        setStage1(arr1);
-        setStage2(arr2);
-        setStage3(arr3);
-        setStage4(arr4);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+          setStage1(arr1);
+          setStage2(arr2);
+          setStage3(arr3);
+          setStage4(arr4);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     }
   };
 
