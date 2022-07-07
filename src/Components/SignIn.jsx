@@ -1,6 +1,7 @@
 import "../CSS/register.css";
-import Captcha from "./Captcha";
+// import Captcha from "./Captcha";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom"
 
 function SignIn() {
   const navigate = useNavigate();
@@ -62,7 +63,8 @@ function SignIn() {
             
           />
         </div>
-        <button onClick={checkdetails}>Click me</button>
+        <button onClick={checkdetails}>SignIn</button>
+        <Link to="/"><button>SignUp</button></Link>
         {/* <Captcha checkdetails={checkdetails} /> */}
       </form>
     </div>

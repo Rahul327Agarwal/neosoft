@@ -164,23 +164,40 @@ function TaskManagement() {
     for (let i = 0; i < stage3.length; i++) alltask.push(stage3[i]);
     for (let i = 0; i < stage4.length; i++) alltask.push(stage4[i]);
 
+    // if user has deleted all the tasks from frontend; sending user details to the backend to delete the data as there is no information
+    // available for the user in alltask array after deleting everytinh from frontend.
+    if(alltask.length===0)
+    {
+      const temp_data={user:sessionStorage.getItem("user")};
+      alltask.push(temp_data);
+    }
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(alltask),
     };
-    fetch("http://localhost:1234/task", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    
+      fetch("http://localhost:1234/task", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    
+    navigate("/dashboard");
+  
   };
 
   const getdata = () => {
     const email = sessionStorage.getItem("user");
+    if(!email)
+    {
+      navigate("/");
+    }
+    else{
     fetch(`http://localhost:1234/task?user=${email}`)
       .then((response) => {
         return response.json();
@@ -205,6 +222,7 @@ function TaskManagement() {
       .catch((error) => {
         alert(error.message);
       });
+    }
   };
 
   useEffect(() => {

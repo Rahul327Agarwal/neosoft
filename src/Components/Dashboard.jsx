@@ -1,12 +1,18 @@
 import "../CSS/dashboard.css";
-import {Link} from "react-router-dom";
-import { useSelector } from 'react-redux';
-  
-function Dashboard() {
+import { Link,useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-    const pending=useSelector(state=>state.pending);
-    const completed=useSelector(state=>state.completed);
-    
+function Dashboard() {
+  const pending = useSelector((state) => state.pending);
+  const completed = useSelector((state) => state.completed);
+  const navigate=useNavigate();
+
+  useEffect(() => {
+    const email = sessionStorage.getItem("user");
+    if (!email) navigate("/");
+  }, []);
+
   return (
     <div>
       <div id="header2">
@@ -16,7 +22,7 @@ function Dashboard() {
       <div id="tasks">
         <div id="total">
           <h1>Total tasks</h1>
-          <h1>{pending+completed}</h1>
+          <h1>{pending + completed}</h1>
         </div>
 
         <div id="pending">
@@ -30,9 +36,9 @@ function Dashboard() {
         </div>
       </div>
       <div id="dash">
-      <Link to="/task">
-        <button id="btn1">Click me to move to Task Management</button>
-      </Link>
+        <Link to="/task">
+          <button id="btn1">Click me to move to Task Management</button>
+        </Link>
       </div>
     </div>
   );

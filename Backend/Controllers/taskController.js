@@ -21,8 +21,8 @@ app.post("/", async (req, res) => {
     // Deleting the old data.
     const deleted = await Task.deleteMany({ user: data[0].user });
 
-    // inserting the data
-    Task.insertMany(data);
+    // inserting the data if data is avilable
+    if (data[1] != undefined) Task.insertMany(data);
 
     res.send({ msg: "success" });
   } catch (error) {
