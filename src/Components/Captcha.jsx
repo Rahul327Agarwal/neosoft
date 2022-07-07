@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 function Captcha(props) {
   const [captcha, setCaptcha] = useState("");
   function GenerateCaptcha() {
@@ -43,6 +44,7 @@ function Captcha(props) {
       <button type="button" onClick={() => ValidCaptcha()}>
         SignIn
       </button>
+      <Link to="/"><button type="button">SignUp</button></Link>
     </>
   );
 }

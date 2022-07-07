@@ -1,13 +1,11 @@
 import "../CSS/register.css";
 import Captcha from "./Captcha";
 import { useNavigate } from "react-router-dom";
-import {Link} from "react-router-dom"
 
 function SignIn() {
   const navigate = useNavigate();
 
   const checkdetails = () => {
-    // e.preventDefault();
     let password = document.getElementById("password").value;
     let email = document.getElementById("email").value;
     var validRegex =
@@ -55,17 +53,11 @@ function SignIn() {
         <div className="sep"></div>
 
         <div className="inputs">
-          <input type="email" id="email" placeholder="e-mail"  />
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            
-          />
+          <input type="email" id="email" placeholder="e-mail" />
+          <input type="password" id="password" placeholder="Password" />
         </div>
-        <button type="button" onClick={()=>checkdetails()}>SignIN</button>
-        <Link to="/"><button>SignUp</button></Link>
-        {/* <Captcha checkdetails={checkdetails} /> */}
+
+        <Captcha checkdetails={checkdetails} />
       </form>
     </div>
   );
