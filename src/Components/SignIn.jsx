@@ -32,6 +32,7 @@ function SignIn() {
       })
       .then((data) => {
         alert("you have successfully logged in");
+        sessionStorage.setItem("user", email);
         navigate("/task");
       })
       .catch((error) => {
@@ -42,23 +43,23 @@ function SignIn() {
   };
 
   return (
-    <div class="container">
+    <div className="container">
       <form id="signup">
-        <div class="header">
+        <div className="header">
           <h3>Sign In</h3>
 
           <p>You want to fill out this form</p>
         </div>
 
-        <div class="sep"></div>
+        <div className="sep"></div>
 
-        <div class="inputs">
-          <input type="email" id="email" placeholder="e-mail" autofocus />
+        <div className="inputs">
+          <input type="email" id="email" placeholder="e-mail"  />
           <input
             type="password"
             id="password"
             placeholder="Password"
-            autofocus
+            
           />
         </div>
         <button onClick={checkdetails}>Click me</button>

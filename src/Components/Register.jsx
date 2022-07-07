@@ -64,22 +64,22 @@ function Register() {
         <div className="sep"></div>
 
         <div className="inputs">
-          <input type="text" id="name" placeholder="Name" autofocus />
+          <input type="text" id="name" placeholder="Name"  />
           <input
             type="text"
             maxLength="10"
             id="contact"
             placeholder="Contact number"
-            autofocus
+            
           />
-          <input type="text" id="username" placeholder="UserName" autofocus />
+          <input type="text" id="username" placeholder="UserName"  />
           <input
             type="password"
             id="password"
             placeholder="Password"
-            autofocus
+            
           />
-          <input type="email" id="email" placeholder="e-mail" autofocus />
+          <input type="email" id="email" placeholder="e-mail"  />
           {/* <input type="image" alt="profile image" placeholder="Profile Image" /> */}
 
           <div className="checkboxy">
