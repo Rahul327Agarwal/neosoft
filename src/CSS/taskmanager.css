@@ -45,6 +45,7 @@ body
     width:20%;
     height:600px; 
     background-color:azure ;
+    text-align: center;
 }
 
 #stage2
@@ -53,6 +54,7 @@ body
     width:20%;
     height:600px; 
     background-color: aqua;
+    text-align: center;
 }
 
 #stage3
@@ -60,7 +62,8 @@ body
     border: 1px solid red;
     width:20%;
     height:600px;
-    background-color:goldenrod; 
+    background-color:goldenrod;
+    text-align: center; 
 }
 
 #stage4
@@ -69,6 +72,7 @@ body
     width:20%;
     height:600px;
     background-color: greenyellow;
+    text-align: center;
 }
 
 #dash
@@ -112,6 +116,20 @@ li
 
 #stage1 > div
 {
-    text-align: left;
-    margin:10px;
+    margin:20px;
+}
+
+#stage2 > div
+{
+    margin:20px;
+}
+
+#stage3 > div
+{
+    margin:20px;
+}
+
+#stage4 > div
+{
+    margin:20px;
 }

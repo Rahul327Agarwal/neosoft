@@ -89,7 +89,6 @@ function TaskManagement() {
 
   // handling edit event.
   const handleedit = (stage, setStage, item) => {
-    console.log(item);
     document.getElementById("task").value = item.name;
     setIsEdit(true);
     curr_setstage = setStage;
@@ -170,7 +169,7 @@ function TaskManagement() {
       const temp_data = { user: sessionStorage.getItem("user") };
       alltask.push(temp_data);
     }
-    console.log(alltask);
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -225,11 +224,9 @@ function TaskManagement() {
   return (
     <>
       <div id="dash">
-        {/* <Link to="/dashboard"> */}
         <button id="btn1" onClick={savedata}>
           Click me to move dashboard
         </button>
-        {/* </Link> */}
       </div>
       <div id="divtask1">
         <h3>Task Manager</h3>
