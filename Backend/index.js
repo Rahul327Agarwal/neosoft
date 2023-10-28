@@ -9,6 +9,7 @@ const userController = require("./src/Controllers/userController");
 const signinController = require("./src/Controllers/signinController");
 const taskController = require("./src/Controllers/taskController");
 const mainController = require("./src/Controllers/mainController");
+const weatherController = require("./src/Controllers/weatherController");
 const pageNotFoundController = require("./src/Controllers/pageNotFoundController");
 
 const cors = require('cors');
@@ -21,6 +22,7 @@ app.use('/register',userController);
 app.use('/signin',signinController);
 app.use('/task', taskController); 
 app.use('/', mainController);
+app.use('/weather',weatherController);
 app.use('*', pageNotFoundController);
 
 // here at below in place of @ i have used %40 in place of the password
