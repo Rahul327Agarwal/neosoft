@@ -11,31 +11,34 @@ const taskController = require("./src/Controllers/taskController");
 const mainController = require("./src/Controllers/mainController");
 const weatherController = require("./src/Controllers/weatherController");
 const pageNotFoundController = require("./src/Controllers/pageNotFoundController");
+const studentController = require("./src/Controllers/studentController");
 
-const cors = require('cors');
-app.use(cors({
-    origin: '*'
-}));
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-
-app.use('/register',userController);
-app.use('/signin',signinController);
-app.use('/task', taskController); 
-app.use('/', mainController);
-app.use('/weather',weatherController);
-app.use('*', pageNotFoundController);
+app.use("/register", userController);
+app.use("/studentRegistration", studentController);
+app.use("/signin", signinController);
+app.use("/task", taskController);
+app.use("/", mainController);
+app.use("/weather", weatherController);
+app.use("*", pageNotFoundController);
 
 // here at below in place of @ i have used %40 in place of the password
-const uri = "mongodb+srv://rahul:rahul%40123@cluster0.ynbgybw.mongodb.net/MERN_BE";
-
+const uri =
+  "mongodb+srv://rahul:rahul%40123@cluster0.ynbgybw.mongodb.net/MERN_BE";
 
 // to connect with the database
-const connect =()=>{
-return mongoose.connect(uri);
-}  
+const connect = () => {
+  return mongoose.connect(uri);
+};
 
 // run the server
 app.listen(1234, async () => {
-   await connect();
+  await connect();
   console.log("server is running on port 1234");
 });
