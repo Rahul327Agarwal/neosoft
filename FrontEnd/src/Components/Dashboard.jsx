@@ -1,12 +1,10 @@
 import "../CSS/dashboard.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 function Dashboard() {
   const pending = useSelector((state) => state.pending);
   const completed = useSelector((state) => state.completed);
-  const navigate = useNavigate();
 
   // useEffect(() => {
   //   const email = sessionStorage.getItem("user");

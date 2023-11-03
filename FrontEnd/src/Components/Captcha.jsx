@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 function Captcha(props) {
   const [captcha, setCaptcha] = useState("");
   function GenerateCaptcha() {
@@ -14,13 +14,12 @@ function Captcha(props) {
     });
     var captchaCode = str + chr1 + " " + chr2 + " " + chr3;
     setCaptcha(captchaCode);
-    
   }
   function ValidCaptcha() {
     var str1 = removeSpaces(captcha);
     var str2 = removeSpaces(document.getElementById("txt").value);
 
-    if (str1 == str2) {
+    if (str1 === str2) {
       props.checkdetails();
     } else alert("Please enter the correct captcha");
   }
@@ -44,7 +43,9 @@ function Captcha(props) {
       <button type="button" onClick={() => ValidCaptcha()}>
         SignIn
       </button>
-      <Link to="/"><button type="button">SignUp</button></Link>
+      <Link to="/">
+        <button type="button">SignUp</button>
+      </Link>
     </>
   );
 }
